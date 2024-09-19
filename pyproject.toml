@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "mat3007-optimization"
+version = "0.1.0"
+description = "This is the package manager for the mat3007 optimization repo"
+authors = ["ZaneY <111720488+zazzane@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pulp = "^2.9.0"
+ipykernel = "^6.29.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
