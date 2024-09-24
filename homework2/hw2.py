@@ -26,9 +26,13 @@ def _main():
     # add decision variables to the problem
     problem.variables.add(obj=obj, lb=lbound, ub=ubound, names=nodes)
 
+    # Define variable type (this is a relaexed continuous constraint)
+    all_var_integers = [(var, problem.variables.type.continuous) for var in nodes]      # uncomment these 2 lines to
+    problem.variables.set_types(all_var_integers)                                       # set the variable type as continuous
+    
     # Define variable type (this is a integer constraint)
-    all_var_integers = [(var, problem.variables.type.integer) for var in nodes]
-    problem.variables.set_types(all_var_integers)
+    # all_var_integers = [(var, problem.variables.type.integer) for var in nodes]       # uncomment these 2 lines to 
+    # problem.variables.set_types(all_var_integers)                                     # set the variable type as integer
 
     # Init constraints
     constraints = []
