@@ -10,6 +10,7 @@ python = "^3.11"
 pulp = "^2.9.0"
 ipykernel = "^6.29.5"
 nbconvert = "^7.16.4"
+cplex = "^22.1.1.2"
 
 
 [build-system]
