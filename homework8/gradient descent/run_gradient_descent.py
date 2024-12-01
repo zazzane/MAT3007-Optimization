@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 
 # Common parameters
 x = np.array([0, 0])  # initial point
-epsilon = 1e-6  # stopping criteria
+epsilon = 1e-5  # stopping criteria
 maxiter = 200  # max iteration
 iter = 0
 
 # Parameters for Armijo backtracking
-sigma = 0.1
-gamma = 0.7
+sigma = 0.5
+gamma = 0.5
 t = 1  # initial step size in line search
 
 # Function
@@ -47,13 +47,13 @@ plt.ion()
 plt.show()
 
 # Gradient descent algorithm
-while np.linalg.norm(gradient(x)) > epsilon and iter <= maxiter:
+while np.linalg.norm(gradient(x)) > epsilon:
     d = -gradient(x)
     
     if s == 1:
-        alpha_k = 1  # large constant step size
+        alpha_k = 0.1  # large constant step size
     elif s == 2:
-        alpha_k = 0.1  # small constant step size
+        alpha_k = 0.01  # small constant step size
     else:
         alpha_k = armijo_backtracking(f, x, d, sigma, gamma, t)
     
@@ -68,6 +68,21 @@ while np.linalg.norm(gradient(x)) > epsilon and iter <= maxiter:
     # Output the solution in each step
     iter += 1
     x = xtemp
+
+# Assign Strategy Name based on s to be printed
+strat_name = ""
+if s == 1:
+    strat_name = 'Large Constant Step Size'
+elif s == 2:
+    strat_name = 'Small Constant Step Size'
+else:
+    strat_name = 'Armijo Backtracking'
+
+# Plot the final solution and add a label
+plt.title(f'Solution Plot for Strategy: {s}, {strat_name}')
+plt.plot(x[0], x[1], '*r')
+plt.ioff()
+plt.show()
 
 # Print final information
 print(f'The algorithm ends after {iter} iterations\n x*={x}\n f(x*)={f(x)}\n gradient norm={np.linalg.norm(gradient(x))}')
